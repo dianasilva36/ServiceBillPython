@@ -1,0 +1,89 @@
+#Casewell Catering and Convention Service
+#Program will calculate the total cost for the service bill using functions
+
+def main():
+  #Enter the number of adults
+  adult_num = int(input('Enter the number of adults:'))
+  #Enter the number of children
+  child_num = int(input('Enter the number of children:'))
+  #Enter the cost of adult meals
+  cost_meal = float(input('Enter the cost of adult meals:'))
+  #Enter the cost of dessert
+  cost_dessert = float(input('Enter the cost of Dessert:'))
+  #Enter the number of rooms
+  room_num = int(input('Enter the number of rooms:'))
+  #Enter the amount of deposit paid
+  deposit = float(input('Enter the Deposit paid:'))
+  #Value of room fee
+  room_fee = 45.00
+  #Tax percentage
+  tax_fee = 0.18
+
+  adult = adult_meal(adult_num, cost_meal)
+  child = child_meal(cost_meal, child_num)
+  room = roomF(room_fee, room_num)
+  dessert = dessertC(adult_num, child_num, cost_dessert)
+  meal = mealT(adult, child, dessert)
+  tax = taxT(meal,tax_fee)
+  due = balanceT(adult, child, room, dessert, meal, tax, deposit)
+
+  display_bill(adult_num, child_num,cost_dessert, room_fee, tax_fee, adult, child, dessert,
+  meal, tax, room, deposit, due)
+
+def adult_meal(adult_num, cost_meal):
+  #Calculate the cost per adult meal
+  total_a_meal = adult_num * cost_meal
+  return total_a_meal
+
+def child_meal(child_num, cost_meal):
+  #Calculate the cost per child meal
+  total_c_meal = (cost_meal * 0.6) * child_num
+  return total_c_meal
+
+def roomF(room_fee, room_num):
+  #Calculate the cost the rooms
+  total_room = room_fee * room_num
+  return total_room
+
+def dessertC(adult_num, child_num, cost_dessert):
+  #Calculate the cost of the dessert
+  total_dessert = (adult_num + child_num) * cost_dessert
+  return total_dessert
+
+def mealT(adult, child, dessert):
+  #Calculate the total cost for the meals
+  total_meal = adult + child + dessert
+  return total_meal
+
+def taxT(meal, tax_fee): 
+  #Calculate the taxes
+  total_tax = meal * tax_fee
+  return total_tax
+
+def balanceT(adult, child, room, dessert, meal, tax, deposit): 
+  #Calculate the balance Due
+  balance = (adult + child + room + dessert + meal + tax) - deposit
+  return balance
+
+def display_bill(adult_num, child_num,cost_dessert, room_fee, tax_fee, adult, child, dessert, meal, tax, room, deposit, due):
+  #Display the bill
+  print() 
+  print('Casewell Catering and Convention Service')
+  print('Final Bill')
+
+  print('Number of Adults:', adult_num)
+  print('Number of Children:', child_num)
+  print('Cost of Dessert:', cost_dessert)
+  print('Room fee:', room_fee)
+  print('Tax Rate:', tax_fee)
+
+  print('Total cost for adult meals:', format(adult, '.2f'))
+  print('Total cost for child meals:', format(child, '.2f'))
+  print('Total cost of dessert:', format(dessert, '.2f'))
+  print('Total food cost:', format(meal, '.2f'))
+  print('Tax total:', format(tax, '.2f'))
+  print('Room total:', format(room, '.2f'))
+  print('Total Deposits:', deposit)
+  print('Balance Due:', format(due, '.2f'))
+
+main()
